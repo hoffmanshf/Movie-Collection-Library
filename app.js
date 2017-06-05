@@ -3,6 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+app.use(bodyParser.json());
+
 Genre = require('./models/genres');
 Movie = require('./models/movies');
 
@@ -24,12 +26,52 @@ app.get('/api/genres', function(req, res){
 	});
 });
 
+app.post('/api/genres', function(req, res){
+	var genre = req.body;
+	Genre.addGenre(genre, function(err, genre){
+		if(err){
+			throw err;
+		}
+		res.json(genre);
+	});
+});
+
+app.put('/api/genres/:_id', function(req, res){
+	var id = req.params._id;
+	var genre = req.body;
+	Genre.updateGenre(id, genre, {}, function(err, genre){
+		if(err){
+			throw err;
+		}
+		res.json(genre);
+	});
+});
+
+app.post('/api/movies', function(req, res){
+	var movie = req.body;
+	Movie.addMovie(movie, function(err, movie){
+		if(err){
+			throw err;
+		}
+		res.json(movie);
+	});
+});
+
 app.get('/api/movies', function(req, res){
 	Movie.getMovies(function(err, movies){
 		if(err){
 			throw err;
 		}
 		res.json(movies);
+	});
+});
+
+app.get('/api/movies/:_id', function(req, res){
+	Movie.getMoviesById(req.params._id,function(err, movie){
+		if(err){
+			throw err;
+		}
+		res.json(movie);
 	});
 });
 

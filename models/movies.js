@@ -40,3 +40,11 @@ var Movie = module.exports = mongoose.model('Movie', movieSchema);
 module.exports.getMovies = function(callback, limit){
 	Movie.find(callback).limit(limit);
 }
+
+module.exports.getMoviesById = function(id, callback){
+	Movie.findById(id, callback);
+}
+
+module.exports.addMovie = function(movie, callback){
+	Movie.create(movie, callback);
+}
