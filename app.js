@@ -47,6 +47,16 @@ app.put('/api/genres/:_id', function(req, res){
 	});
 });
 
+app.delete('/api/genres/:_id', function(req, res){
+	var id = req.params._id;
+	Genre.removeGenre(id, function(err, genre){
+		if(err){
+			throw err;
+		}
+		res.json(genre);
+	});
+});
+
 app.post('/api/movies', function(req, res){
 	var movie = req.body;
 	Movie.addMovie(movie, function(err, movie){
@@ -68,6 +78,27 @@ app.get('/api/movies', function(req, res){
 
 app.get('/api/movies/:_id', function(req, res){
 	Movie.getMoviesById(req.params._id,function(err, movie){
+		if(err){
+			throw err;
+		}
+		res.json(movie);
+	});
+});
+
+app.put('/api/movies/:_id', function(req, res) {
+	var id = req.params._id;
+	var movie = req.body;
+	Movie.updateMovie(id, movie, {}, function(err, movie)  {
+		if(err){
+			throw err;
+		}
+		res.json(movie);
+	});
+});
+
+app.delete('/api/movies/:_id', function(req, res)  {
+	var id = req.params._id;
+	Movie.removeMovie(id, function(err, movie)  {
 		if(err){
 			throw err;
 		}
