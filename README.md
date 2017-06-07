@@ -3,5 +3,8 @@
 
 <img width="1408" alt="api screen" src="https://user-images.githubusercontent.com/24725550/26900514-6cdbf448-4ba0-11e7-96f7-eaeef7ea586a.png">
 
+## Detail Page ##
+
+
 **Setup before running:**
 Run npm install and then node app to start.
