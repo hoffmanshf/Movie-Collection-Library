@@ -22,16 +22,16 @@ myApp.controller('MoviesController', ['$scope', '$http', '$location', '$routePar
 		});
 	}
 
-	// $scope.updateMovie = function(){
-	// 	var id = $routeParams.id;
-	// 	$http.put('/api/movies/'+id, $scope.movie).success(function(response){
-	// 		window.location.href='#/movies';
-	// 	});
-	// }
+	$scope.updateMovie = function(){
+		var id = $routeParams.id;
+		$http.put('/api/movies/'+id, $scope.movie).then(function(response){
+			window.location.href='#!movies';
+		});
+	}
 
-	// $scope.removeMovie = function(id){
-	// 	$http.delete('/api/movies/'+id).success(function(response){
-	// 		window.location.href='#/movies';
-	// 	});
-	// }
+	$scope.removeMovie = function(id){
+		$http.delete('/api/movies/'+id).then(function(response){
+			window.location.href='#!movies';
+		});
+	}
 }]);
